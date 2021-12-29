@@ -4,9 +4,6 @@ plugins {
     id 'kotlin-android-extensions'
 }
 
-group = 'me.hectorhalpizar.lib'
-version = '1.0'
-
 def gitCommitNumber = {
     try {
         return 'git rev-list --count --first-parent HEAD'.execute().text.trim().toInteger().intValue()
@@ -14,6 +11,9 @@ def gitCommitNumber = {
         return 0
     }
 }
+
+group = "me.hectorhalpizar.lib"
+version = "1.0"
 
 repositories {
     google()
@@ -65,8 +65,8 @@ android {
         minSdkVersion 24
         targetSdkVersion 31
         versionCode gitCommitNumber()
-        versionName "$version"
-        setProperty("archivesBaseName", "$group.$archivesBaseName-$versionName.$versionCode")
+
+        setProperty("archivesBaseName", "$group.$archivesBaseName-$versionName")
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

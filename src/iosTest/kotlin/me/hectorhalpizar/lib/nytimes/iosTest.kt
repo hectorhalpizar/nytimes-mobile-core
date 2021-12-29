@@ -1,4 +1,4 @@
-package me.hectorhalpizar.lib.library
+package me.hectorhalpizar.lib.nytimes
 
 import kotlin.test.Test
 import kotlin.test.assertTrue

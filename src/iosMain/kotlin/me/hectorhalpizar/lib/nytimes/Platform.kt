@@ -1,4 +1,4 @@
-package me.hectorhalpizar.lib.library
+package me.hectorhalpizar.lib.nytimes
 
 
 import platform.UIKit.UIDevice

@@ -1,4 +1,4 @@
-package me.hectorhalpizar.lib.library
+package me.hectorhalpizar.lib.nytimes
 
 actual class Platform actual constructor() {
     actual val platform: String = "Android ${android.os.Build.VERSION.SDK_INT}"
