@@ -1,4 +1,4 @@
-package me.hectorhalpizar.lib.nytimes
+package me.hectorhalpizar.core.nytimes
 
 import org.junit.Assert.assertTrue
 import org.junit.Test

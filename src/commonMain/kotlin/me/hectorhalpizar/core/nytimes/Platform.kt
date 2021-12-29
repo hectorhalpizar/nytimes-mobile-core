@@ -1,4 +1,4 @@
-package me.hectorhalpizar.lib.nytimes
+package me.hectorhalpizar.core.nytimes
 
 expect class Platform() {
     val platform: String

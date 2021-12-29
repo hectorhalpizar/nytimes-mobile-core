@@ -13,5 +13,5 @@ pluginManagement {
         }
     }
 }
-rootProject.name = 'nytimes'
+rootProject.name = 'nytimes-mobile-core'
 

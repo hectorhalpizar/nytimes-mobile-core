@@ -65,7 +65,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 31
         versionCode gitCommitNumber()
-
+        versionName "$version.$versionCode"
         setProperty("archivesBaseName", "$group.$archivesBaseName-$versionName")
     }
     compileOptions {
