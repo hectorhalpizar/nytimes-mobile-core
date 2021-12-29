@@ -62,7 +62,7 @@ android {
     compileSdkVersion 31
     sourceSets.main.manifest.srcFile('src/androidMain/AndroidManifest.xml')
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode gitCommitNumber()
         versionName "$version.$versionCode"
