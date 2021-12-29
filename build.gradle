@@ -7,13 +7,18 @@ plugins {
 def gitCommitNumber = {
     try {
         return 'git rev-list --count --first-parent HEAD'.execute().text.trim().toInteger().intValue()
-    } catch (Exception e) {
+    } catch (Exception ignored) {
         return 0
     }
 }
 
+def version_major = 1
+def version_minor = 0
+def version_revision = gitCommitNumber()
+def version_code_tag = "draft"
+
 group = "me.hectorhalpizar.lib"
-version = "1.0"
+version = "$version_major.$version_minor.$version_revision-$version_code_tag"
 
 repositories {
     google()
@@ -64,9 +69,9 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode gitCommitNumber()
-        versionName "$version.$versionCode"
-        setProperty("archivesBaseName", "$group.$archivesBaseName-$versionName")
+        versionCode version_revision
+        versionName "$version"
+        setProperty("archivesBaseName", "$group.$archivesBaseName")
     }
     buildTypes {
         release {
