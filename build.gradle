@@ -5,7 +5,15 @@ plugins {
 }
 
 group = 'me.hectorhalpizar.lib'
-version = '1.0.0'
+version = '1.0'
+
+def gitCommitNumber = {
+    try {
+        return 'git rev-list --count --first-parent HEAD'.execute().text.trim().toInteger().intValue()
+    } catch (Exception e) {
+        return 0
+    }
+}
 
 repositories {
     google()
@@ -56,6 +64,9 @@ android {
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 31
+        versionCode gitCommitNumber()
+        versionName "$version"
+        setProperty("archivesBaseName", "$group.$archivesBaseName-$versionName.$versionCode")
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
