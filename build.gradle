@@ -5,6 +5,9 @@ plugins {
     id 'maven-publish'
 }
 
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties"))) //Set env variable GPR_USER & GPR_API_KEY if not adding a properties file
+
 def gitCommitNumber = {
     try {
         return 'git rev-list --count --first-parent HEAD'.execute().text.trim().toInteger().intValue()
@@ -28,7 +31,10 @@ repositories {
 }
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariantsGroupedByFlavor = true
+        publishLibraryVariants("debug", "release")
+    }
     iosX64('ios') {
         binaries {
             framework {
@@ -76,6 +82,7 @@ android {
     }
     buildTypes {
         release {
+            debuggable false
             // Enables code shrinking, obfuscation, and optimization for only
             // your project's release build type.
             minifyEnabled true
@@ -85,6 +92,10 @@ android {
             // R8 configuration files.
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'src/androidMain/proguard-rules.pro'
         }
+
+        debug {
+            debuggable true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -92,14 +103,17 @@ android {
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
+publishing {
+    repositories {
+        maven {
+            name = "nytimes-mobile-core"
+            url = uri("https://maven.pkg.github.com/hectorhalpizar/nytimes-mobile-core")
+            credentials {
+                username = githubProperties['gpr.user'] ?: System.getenv("USERNAME")
+                password = githubProperties['gpr.key'] ?: System.getenv("TOKEN")
 
-                groupId = 'com.github.hectorhalpizar' as Publication
-                artifactId = rootProject.name as Publication
+                println("gpr.user ${githubProperties['gpr.user']}")
+                println("gpr.key ${githubProperties['gpr.key']}")
             }
         }
     }
