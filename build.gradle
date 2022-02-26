@@ -31,14 +31,19 @@ repositories {
 }
 
 kotlin {
+    def os = System.getProperty("os.name").toLowerCase()
+
     android {
         publishLibraryVariantsGroupedByFlavor = true
         publishLibraryVariants("debug", "release")
     }
-    iosX64('ios') {
-        binaries {
-            framework {
-                baseName = 'library'
+
+    if (os.indexOf("darwin") || os.indexOf("mac") >= 0) {
+        iosX64('ios') {
+            binaries {
+                framework {
+                    baseName = 'library'
+                }
             }
         }
     }
@@ -111,9 +116,6 @@ publishing {
             credentials {
                 username = githubProperties['gpr.user'] ?: System.getenv("USERNAME")
                 password = githubProperties['gpr.key'] ?: System.getenv("TOKEN")
-
-                println("gpr.user ${githubProperties['gpr.user']}")
-                println("gpr.key ${githubProperties['gpr.key']}")
             }
         }
     }
