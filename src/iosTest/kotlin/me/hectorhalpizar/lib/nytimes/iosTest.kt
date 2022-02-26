@@ -1,5 +1,6 @@
 package me.hectorhalpizar.lib.nytimes
 
+import me.hectorhalpizar.core.nytimes.Greeting
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
