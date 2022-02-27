@@ -3,6 +3,9 @@
     public *** greeting(...);
 }
 
+-keep public final class me.hectorhalpizar.core.nytimes.domain.*
+-keepclassmembers public final class me.hectorhalpizar.core.nytimes.domain.* { *; }
+
 -dontshrink
 -dontoptimize
 -dontwarn com.somelibrary.annotations.*
