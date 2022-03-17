@@ -4,6 +4,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import me.hectorhalpizar.PROJECT_PATH
 import me.hectorhalpizar.core.nytimes.domain.Result
 import me.hectorhalpizar.util.FileReader
 import kotlin.test.Test
@@ -12,7 +13,7 @@ import kotlin.test.assertEquals
 class ResultDeserializationTest {
     @Test
     fun deserialize_result() {
-        val json = FileReader("feed_top_stories.json").read()
+        val json = FileReader("${PROJECT_PATH}/feed_top_stories.json").read()
         Json.decodeFromString<Result>(json).let { result ->
             assertEquals(39, result.num_results)
             assertEquals(39, result.results.size)

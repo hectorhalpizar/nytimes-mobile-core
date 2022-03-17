@@ -3,3 +3,4 @@
 build/
 local.properties
 github.properties
+/src/commonTest/kotlin/me/hectorhalpizar/TestValue.kt
