@@ -5,11 +5,11 @@ import kotlinx.datetime.LocalDate
 import me.hectorhalpizar.core.nytimes.domain.Article
 import me.hectorhalpizar.core.nytimes.domain.Section
 
-interface Repository {
+interface ArticleRepository {
     /**
      * Handles Articles from a REST API
      */
-    interface RemoteTopStory {
+    interface Remote {
         /**
          * Get the Top Stories articles from the REST API
          *
@@ -21,13 +21,13 @@ interface Repository {
     /**
      * Handles favorite articles repository
      */
-    interface LocalTopStory {
+    interface Local {
         /**
          * Adds a top story [Article] to the device local storage
          *
          * @param article Top story [Article] to add to the device
          */
-        suspend fun addTopStory(article: Article)
+        suspend fun storeTopStory(article: Article)
         /**
          * Get the Top Stories articles from the device local storage
          *
@@ -64,7 +64,7 @@ interface Repository {
          *
          * @param section   [Section] to set the latest date
          * @param date      A date to set
-         * @see [RemoteTopStory.getArticles]
+         * @see [Remote.getArticles]
          */
         suspend fun setLatestRemoteFetchDate(section: Section, date: LocalDate)
     }
