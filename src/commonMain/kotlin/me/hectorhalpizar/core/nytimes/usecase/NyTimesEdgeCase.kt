@@ -11,4 +11,6 @@ import me.hectorhalpizar.core.nytimes.domain.Article
 sealed class NyTimesEdgeCase(message: String?, cause: Throwable?) : Exception(message, cause) {
     class FailedFetchingRemoteTopStories(cause: Throwable?) : NyTimesEdgeCase("Failed fetching stories from the Network", cause)
     class FailedStoringTopStoryLocally(topStoryToStore: Article, cause: Throwable?) : NyTimesEdgeCase("Failed to store top story $topStoryToStore", cause)
+    class FailedFetchingLocalTopStories(cause: Throwable?) : NyTimesEdgeCase("Failed fetching stories from the Device", cause)
+    class NoArticlesStoredLocallyAvailable : NyTimesEdgeCase("There are no articles stored locally", null)
 }
